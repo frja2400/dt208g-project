@@ -15,24 +15,36 @@ export class CoursesComponent {
   courses: Course[] = [];
   filteredCourses: Course[] = [];
   filterValue: string = "";
+  subjects: string[] = [];
+  selectedSubject: string = "";
 
   //Skapar instans av CourseService
-  constructor(private courseService: CourseService) {}
+  constructor(private courseService: CourseService) { }
 
   //Anropar metoden i CourseService
   ngOnInit() {
     this.courseService.getCourses().subscribe((courses) => {
       this.courses = courses;
       this.filteredCourses = courses;
+
+      //Hämta alla ämnen från datan
+      const subjects = this.courses.map(course => course.subject);
+      this.subjects = [...new Set(subjects)];   //Undviker dubletter
     })
   }
 
-  applyFilter(): void {
-    this.filteredCourses = this.courses.filter((course) =>
-      //Filtrera på antingen kurskod eller kursnamn.
-      course.courseCode.toLowerCase().includes(this.filterValue.toLowerCase()) ||
-      course.courseName.toLowerCase().includes(this.filterValue.toLowerCase())
-    );
+  applyFilters(): void {
+    this.filteredCourses = this.courses.filter((course) => {
+      //Filtrera på kurskod eller kursnamn i sökrutan.
+      const filterByText =
+        course.courseCode.toLowerCase().includes(this.filterValue.toLowerCase()) ||
+        course.courseName.toLowerCase().includes(this.filterValue.toLowerCase());
+
+      //Filtrera på valt ämne
+      const filterBySubject = this.selectedSubject === "" || course.subject === this.selectedSubject;
+
+      return filterByText && filterBySubject
+    });
   }
 
   //Sorteringsmetoder
@@ -57,26 +69,42 @@ export class CoursesComponent {
 
   sortName(): void {
     const direction = this.sortDirection.courseName;
-    this.filteredCourses.sort((a ,b) => 
+    this.filteredCourses.sort((a, b) =>
       direction ? a.courseName.localeCompare(b.courseName) : b.courseName.localeCompare(a.courseName)
     );
     this.sortDirection.courseName = !direction;
   }
 
   sortPoints(): void {
-  const direction = this.sortDirection.points;
-  this.filteredCourses.sort((a, b) =>
-    direction ? a.points - b.points : b.points - a.points
-  );
-  this.sortDirection.points = !direction;
-}
+    const direction = this.sortDirection.points;
+    this.filteredCourses.sort((a, b) =>
+      direction ? a.points - b.points : b.points - a.points
+    );
+    this.sortDirection.points = !direction;
+  }
 
   sortSubject(): void {
     const direction = this.sortDirection.subject;
-    this.filteredCourses.sort((a ,b) => 
+    this.filteredCourses.sort((a, b) =>
       direction ? a.subject.localeCompare(b.subject) : b.subject.localeCompare(a.subject)
     );
     this.sortDirection.subject = !direction;
+  }
+
+  //Metod som rensar val, filtrering, sortering
+  clearChoices(): void {
+    this.filterValue = "";
+    this.selectedSubject = "";
+
+    this.sortDirection = {
+      courseCode: true,
+      courseName: true,
+      points: true,
+      subject: true
+    };
+
+    //Kopierar courses och gör en ny array. För att undvika att ändringar i filteredCourses påverkar courses. 
+    this.filteredCourses = [...this.courses];
   }
 
 }

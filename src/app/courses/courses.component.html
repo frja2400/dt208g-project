@@ -2,12 +2,21 @@
     <h2>Kurser</h2>
     <label for="filter">Filtrera:</label><br>
     <input type="text" id="filter" placeholder="Filtrera på kurskod eller kursnamn" [(ngModel)]="filterValue"
-        (input)="applyFilter()"> <!--Tvåvägs data-bindning-->
+        (input)="applyFilters()"><br> <!--Tvåvägs data-bindning-->
 
     <!--Förbättrar användarupplevelsen med att skriva ut ett meddelande om inga kurser hittas.-->
     @if(filteredCourses.length === 0) {
     <p>Inga kurser hittades...</p>
     }
+
+    <label for="subjectSelect">Välj ämne:</label><br>
+    <select id="subjectSelect" [(ngModel)]="selectedSubject" (change)="applyFilters()">
+        <option value="">-- Alla ämnen --</option>
+        <option *ngFor="let subject of subjects" [value]="subject">{{ subject }}</option>
+    </select><br>
+
+    <button (click)="clearChoices()">RENSA VAL</button>
+
     <table>
         <thead>
             <tr>

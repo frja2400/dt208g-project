@@ -35,4 +35,48 @@ export class CoursesComponent {
     );
   }
 
+  //Sorteringsmetoder
+  //Sorteringsriktning, true = stigande. Används för att växla mellan stigande och fallande.
+  sortDirection = {
+    courseCode: true,
+    courseName: true,
+    points: true,
+    subject: true
+  }
+
+  sortCode(): void {
+    const direction = this.sortDirection.courseCode;
+    this.filteredCourses.sort((a, b) =>
+      //Använder localCompare för att jämföra strängar och ta hänsyn till språk.
+      //En ternär operator väljer stigande eller fallande beroende på om direction är true eller false.
+      direction ? a.courseCode.localeCompare(b.courseCode) : b.courseCode.localeCompare(a.courseCode)
+    );
+    //Byter riktning för nästa gång man klickar.
+    this.sortDirection.courseCode = !direction;
+  }
+
+  sortName(): void {
+    const direction = this.sortDirection.courseName;
+    this.filteredCourses.sort((a ,b) => 
+      direction ? a.courseName.localeCompare(b.courseName) : b.courseName.localeCompare(a.courseName)
+    );
+    this.sortDirection.courseName = !direction;
+  }
+
+  sortPoints(): void {
+  const direction = this.sortDirection.points;
+  this.filteredCourses.sort((a, b) =>
+    direction ? a.points - b.points : b.points - a.points
+  );
+  this.sortDirection.points = !direction;
+}
+
+  sortSubject(): void {
+    const direction = this.sortDirection.subject;
+    this.filteredCourses.sort((a ,b) => 
+      direction ? a.subject.localeCompare(b.subject) : b.subject.localeCompare(a.subject)
+    );
+    this.sortDirection.subject = !direction;
+  }
+
 }

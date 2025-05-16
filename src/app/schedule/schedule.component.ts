@@ -37,4 +37,9 @@ export class ScheduleComponent {
     this.loadCourses();
   }
 
+  //Hämta totalt antal poäng från tillagda kurser
+  getTotalPoints(): number {
+    return this.addedCourses.reduce((sum, course) => sum + course.points, 0);
+  }
+
 }

@@ -22,7 +22,7 @@ import { MatButtonModule } from '@angular/material/button';
 export class CoursesComponent {
   //Properties
   displayedColumns: string[] = ['courseCode', 'courseName', 'points', 'subject', 'syllabus', 'add'];    //Tabeller som ska visas i Angular Material-tabellen
-  dataSource = new MatTableDataSource<Course>();                                                        //Hanterar sortering, filtrering och paginering
+  dataSource = new MatTableDataSource<Course>();                                                        
   subjects: string[] = [];                                                                              //Lista över ämnen som hämtas till drop down-menyn
   filterValue: string = "";
   selectedSubject: string = "";

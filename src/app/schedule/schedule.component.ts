@@ -1,45 +1,46 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Course } from '../models/course';
 import { ScheduleService } from '../services/schedule.service';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-schedule',
-  imports: [CommonModule],
+  imports: [CommonModule, MatTableModule, MatButtonModule],
   templateUrl: './schedule.component.html',
   styleUrl: './schedule.component.css'
 })
 export class ScheduleComponent {
+  //Properties
+  displayedColumns: string[] = ['courseCode', 'courseName', 'points', 'subject', 'syllabus', 'remove'];
+  dataSource = new MatTableDataSource<Course>();
+  filterValue: string = '';
 
-  addedCourses: Course[] = [];
-
-  constructor(private scheduleService: ScheduleService) { }
+  constructor(private scheduleService: ScheduleService) {}
 
   //Laddar kurser vid start
   ngOnInit() {
     this.loadCourses();
   }
 
-  //Hämtar en kopierad lista med tillagda kurser från ScheduleService.
   loadCourses() {
-    this.addedCourses = this.scheduleService.getCourses();
+    const courses = this.scheduleService.getCourses();
+    this.dataSource.data = courses;
   }
 
-  //Raderar kurser och laddar om listan
-  removeCourse(course: Course): void {
+  removeCourse(course: Course) {
     this.scheduleService.removeCourse(course);
     this.loadCourses();
   }
 
-  //Radera alla kurser och ladda om listan
-  removeAll(): void {
+  removeAll() {
     this.scheduleService.removeAll();
     this.loadCourses();
   }
 
-  //Hämta totalt antal poäng från tillagda kurser
   getTotalPoints(): number {
-    return this.addedCourses.reduce((sum, course) => sum + course.points, 0);
+    return this.dataSource.filteredData.reduce((sum, course) => sum + course.points, 0);
   }
 
 }

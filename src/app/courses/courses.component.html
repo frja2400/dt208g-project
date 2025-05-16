@@ -20,7 +20,7 @@
     <p>Visar {{ dataSource.filteredData.length }} av {{ dataSource.data.length }} kurser</p>
 
     <!--Aktiverar sortering och skapar kolumner med mat-sort-header-->
-    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
 
         <ng-container matColumnDef="courseCode">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Kod</th>

@@ -1,4 +1,4 @@
-//Inerface för data jag hämtar från kurser
+//Interface för data jag hämtar från kurser
 export interface Course {
     courseCode: string,
     courseName: string,

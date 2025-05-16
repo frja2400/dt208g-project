@@ -1,8 +1,9 @@
-import { CommonModule } from '@angular/common'; //Importerar CommonModule för ngFor
+import { CommonModule } from '@angular/common';                       //Importerar CommonModule för ngFor.
 import { Component } from '@angular/core';
-import { Course } from '../models/course';      //Interface av kurser
+import { Course } from '../models/course';                            //Interface av kurser.
 import { CourseService } from '../services/course.service';
 import { FormsModule } from '@angular/forms';
+import { ScheduleService } from '../services/schedule.service';
 
 @Component({
   selector: 'app-courses',
@@ -18,8 +19,11 @@ export class CoursesComponent {
   subjects: string[] = [];
   selectedSubject: string = "";
 
-  //Skapar instans av CourseService
-  constructor(private courseService: CourseService) { }
+  //Ger min komponent tillgång till mina services.
+  constructor(
+    private courseService: CourseService,
+    private scheduleService: ScheduleService
+  ) { }
 
   //Anropar metoden i CourseService
   ngOnInit() {
@@ -105,6 +109,12 @@ export class CoursesComponent {
 
     //Kopierar courses och gör en ny array. För att undvika att ändringar i filteredCourses påverkar courses. 
     this.filteredCourses = [...this.courses];
+  }
+
+  //Metod som lägger til kurser med hjälp av min ScheduleService.
+  addCourses(course: Course) {
+    console.log("Lägger till kurs:", course);
+    this.scheduleService.addCourses(course);
   }
 
 }

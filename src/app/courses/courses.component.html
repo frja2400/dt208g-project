@@ -27,6 +27,7 @@
                 <th (click)="sortPoints()">Poäng</th>
                 <th (click)="sortSubject()">Ämne</th>
                 <th>Kursplan</th>
+                <th>Lägg till</th>
             </tr>
         </thead>
         <tbody>
@@ -36,6 +37,8 @@
                 <td>{{ course.points }}</td>
                 <td>{{ course.subject }}</td>
                 <td><a [href]="course.syllabus" target="_blank" rel="noopener">Kursplan</a></td>
+                <!--Funktion som adderar kursen till ramschemat-->
+                <td><button (click)="addCourses(course)">LÄGG TILL</button></td>
             </tr>
         </tbody>
     </table>

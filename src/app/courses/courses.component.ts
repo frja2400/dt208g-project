@@ -112,9 +112,9 @@ export class CoursesComponent {
   }
 
   //Metod som lägger til kurser med hjälp av min ScheduleService.
-  addCourses(course: Course) {
+  addCourse(course: Course) {
     console.log("Lägger till kurs:", course);
-    this.scheduleService.addCourses(course);
+    this.scheduleService.addCourse(course);
   }
 
 }

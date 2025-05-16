@@ -7,7 +7,7 @@ import { Course } from '../models/course';
 export class ScheduleService {
 
   //Properties
-  private addedCourses: Course[] = [];
+  private addedCourse: Course[] = [];
 
   //Ladda kurser direkt som är sparade i localStorage
   constructor() {
@@ -16,22 +16,34 @@ export class ScheduleService {
 
   //Returnerar en kopia av tillagda kurser för att skydda originaldata.
   getCourses(): Course[] {
-    return [...this.addedCourses];
+    return [...this.addedCourse];
   }
 
   //Lägger till en kurs till schemat om den inte finns och sparar i localStorage.
-  addCourses(course: Course): void {
-    if (!this.addedCourses.find(c => c.courseCode === course.courseCode)) {
-      this.addedCourses.push(course);
+  addCourse(course: Course): void {
+    if (!this.addedCourse.find(c => c.courseCode === course.courseCode)) {
+      this.addedCourse.push(course);
       this.saveToLocalStorage();
     }
+  }
+
+  //Raderar kurs från schemat och uppdaterar och sparar localStorage
+  removeCourse(course: Course): void {
+    this.addedCourse = this.addedCourse.filter(c => c.courseCode !== course.courseCode);
+    this.saveToLocalStorage();
+  }
+
+  //Raderar alla kurser från ramschemat
+  removeAll(): void {
+    this.addedCourse = [];
+    this.saveToLocalStorage();
   }
 
   //Sparar schemat till localStorage
   private saveToLocalStorage(): void {
     try {
       //Gör om till sträng och lagrar
-      localStorage.setItem('addedCourses', JSON.stringify(this.addedCourses));
+      localStorage.setItem('addedCourses', JSON.stringify(this.addedCourse));
     } catch (error) {
       console.error('Kunde inte spara kurser till localStorage:', error);
     }
@@ -43,7 +55,7 @@ export class ScheduleService {
       const data = localStorage.getItem('addedCourses');
       //Om data finns omvandla tillbaka till array med kurser.
       if (data) {
-        this.addedCourses = JSON.parse(data);
+        this.addedCourse = JSON.parse(data);
       }
     } catch (error) {
       console.error('Kunde inte läsa kurser från localStorage:', error);

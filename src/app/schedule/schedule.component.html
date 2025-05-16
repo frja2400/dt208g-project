@@ -1,5 +1,6 @@
 <div class="scheduleContainer">
     <h2>Kurser</h2>
+    <button (click)="removeAll()">TA BORT ALLA</button>
     <table>
         <thead>
             <tr>
@@ -18,7 +19,7 @@
                 <td>{{ course.points }}</td>
                 <td>{{ course.subject }}</td>
                 <td><a [href]="course.syllabus" target="_blank" rel="noopener">Kursplan</a></td>
-                <td><button>TA BORT</button></td>
+                <td><button (click)="removeCourse(course)">TA BORT</button></td>
             </tr>
         </tbody>
     </table>

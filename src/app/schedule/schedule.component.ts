@@ -17,7 +17,7 @@ export class ScheduleComponent {
   dataSource = new MatTableDataSource<Course>();
   filterValue: string = '';
 
-  constructor(private scheduleService: ScheduleService) {}
+  constructor(private scheduleService: ScheduleService) { }
 
   //Laddar kurser vid start
   ngOnInit() {
@@ -34,9 +34,12 @@ export class ScheduleComponent {
     this.loadCourses();
   }
 
-  removeAll() {
-    this.scheduleService.removeAll();
-    this.loadCourses();
+  removeAll(): void {
+    const confirmed = window.confirm("Är du säker på att du vill radera alla kurser?");
+    if (confirmed) {
+      this.scheduleService.removeAll();
+      this.loadCourses();
+    }
   }
 
   getTotalPoints(): number {

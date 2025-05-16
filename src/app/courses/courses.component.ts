@@ -26,6 +26,7 @@ export class CoursesComponent {
   subjects: string[] = [];                                                                              //Lista över ämnen som hämtas till drop down-menyn
   filterValue: string = "";
   selectedSubject: string = "";
+  addedCourses: Course[] = [];
 
   //Deklarerar referenser till sortering och paginering som kopplas med <mat-sort> och <mat-paginator> i HTML.
   @ViewChild(MatSort) sort!: MatSort;
@@ -64,6 +65,9 @@ export class CoursesComponent {
 
         return matchText && matchSubject;
       };
+
+      //Hämta redan tillagda kurser för att kunna ändra knapp
+      this.addedCourses = this.scheduleService.getCourses();
     });
   }
 
@@ -91,5 +95,12 @@ export class CoursesComponent {
   addCourse(course: Course) {
     console.log("Lägger till kurs:", course);
     this.scheduleService.addCourse(course);
+    //Uppdatera listan när ny kurs adderats
+    this.addedCourses = this.scheduleService.getCourses();
   }
+
+  //Kolla om en kurs är tillagd eller inte
+  isCourseAdded(course: Course): boolean {
+  return this.addedCourses.some(c => c.courseCode === course.courseCode);
+}
 }

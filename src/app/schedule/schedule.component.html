@@ -1,7 +1,7 @@
 <div class="scheduleContainer">
-    <h2>Kurser</h2>
+    <h2>Ramschema</h2>
 
-    <button mat-button color="warn" (click)="removeAll()">TA BORT ALLA</button>
+    <button mat-raised-button color="warn" (click)="removeAll()">Ta bort alla</button>
 
     <table mat-table [dataSource]="dataSource">
 
@@ -35,7 +35,7 @@
         <ng-container matColumnDef="remove">
             <th mat-header-cell *matHeaderCellDef>Ta bort</th>
             <td mat-cell *matCellDef="let course">
-                <button mat-raised-button color="warn" (click)="removeCourse(course)">TA BORT</button>
+                <button mat-raised-button color="primary" (click)="removeCourse(course)">Ta bort</button>
             </td>
         </ng-container>
 

@@ -2,20 +2,22 @@
     <h2>Kurser</h2>
 
     <!--Tvåvägs-databidning och användning av AM-formulärkomponenter-->
-    <mat-form-field appearance="outline">
-        <mat-label>Filtrera</mat-label>
-        <input matInput [(ngModel)]="filterValue" (input)="applyFilters()"
-            placeholder="Filtrera på kurskod eller namn" />
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-        <mat-label>Ämne</mat-label>
-        <mat-select [(ngModel)]="selectedSubject" (selectionChange)="applyFilters()">
-            <mat-option value="">-- Alla ämnen --</mat-option>
-            <mat-option *ngFor="let subject of subjects" [value]="subject">{{ subject }}</mat-option>
-        </mat-select>
-    </mat-form-field>
+    <div class="filterContainer">
+        <mat-form-field appearance="outline">
+            <mat-label>Filtrera</mat-label>
+            <input matInput [(ngModel)]="filterValue" (input)="applyFilters()"
+                placeholder="Filtrera på kurskod eller namn" />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Ämne</mat-label>
+            <mat-select [(ngModel)]="selectedSubject" (selectionChange)="applyFilters()">
+                <mat-option value="">-- Alla ämnen --</mat-option>
+                <mat-option *ngFor="let subject of subjects" [value]="subject">{{ subject }}</mat-option>
+            </mat-select>
+        </mat-form-field><br>
+    </div>
 
-    <button mat-button color="warn" (click)="clearChoices()">Rensa val</button>
+    <button mat-raised-button color="warn" (click)="clearChoices()">Rensa val</button>
 
     <p>Visar {{ dataSource.filteredData.length }} av {{ dataSource.data.length }} kurser</p>
 
@@ -55,7 +57,7 @@
                 <!--Är kursen tillagd? Då ska säger knappen "TILLAGD", annars "LÄGG TILL"-->
                 <button mat-raised-button [color]="isCourseAdded(course) ? 'accent' : 'primary'"
                     [disabled]="isCourseAdded(course)" (click)="addCourse(course)">
-                    {{ isCourseAdded(course) ? 'TILLAGD' : 'LÄGG TILL' }}
+                    {{ isCourseAdded(course) ? 'Tillagd' : 'Lägg till' }}
                 </button>
             </td>
         </ng-container>
@@ -64,7 +66,7 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-
-    <!--Anger hur många rader som ska visas per sida-->
-    <mat-paginator [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
 </div>
+
+<!--Anger hur många rader som ska visas per sida-->
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>

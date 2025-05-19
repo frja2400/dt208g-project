@@ -1,0 +1,23 @@
+.filterContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+mat-form-field {
+    flex: 1;
+}
+
+h2, table {
+    border-bottom: 1px solid lightgrey;
+    padding-bottom: 5px;
+}
+
+.courseContainer {
+    overflow-x: auto;
+}
+
+button {
+  min-width: 100px;
+}
+

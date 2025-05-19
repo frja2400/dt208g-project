@@ -1,0 +1,8 @@
+main {
+    width: 90%;
+    max-width: 1000px;
+    margin: 0 auto;
+    flex: 1;
+    padding: 2%;
+    box-sizing: border-box;
+}

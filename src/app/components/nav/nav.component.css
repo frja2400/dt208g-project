@@ -37,7 +37,7 @@ li a:hover {
     text-underline-offset: 5px;
 }
 
-@media screen and (max-width : 700px) {
+@media screen and (max-width : 800px) {
 
     header {
         background: transparent;

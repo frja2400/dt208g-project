@@ -1,12 +1,30 @@
 .scheduleContainer {
-    overflow-x: auto;
+  overflow-x: auto;
 }
 
 button {
   min-width: 100px;
 }
 
-h2, table {
-    border-bottom: 1px solid lightgrey;
-    padding-bottom: 5px;
+h2,
+table {
+  border-bottom: 1px solid lightgrey;
+  padding-bottom: 5px;
+}
+
+@media screen and (max-width : 800px) {
+  h2 {
+    text-align: center;
+  }
+
+  .btnContainer {
+    text-align: center;
+  }
+
+  .scheduleContainer {
+    border-top: 2px solid #8C6A5D;
+    border-bottom: 2px solid #8C6A5D;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
 }

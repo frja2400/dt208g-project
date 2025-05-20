@@ -1,8 +1,8 @@
+<h2>Ramschema</h2>
+
+<div class="btnContainer"><button mat-raised-button color="warn" (click)="removeAll()">Ta bort alla</button></div>
+
 <div class="scheduleContainer">
-    <h2>Ramschema</h2>
-
-    <button mat-raised-button color="warn" (click)="removeAll()">Ta bort alla</button>
-
     <table mat-table [dataSource]="dataSource">
 
         <ng-container matColumnDef="courseCode">
@@ -42,7 +42,7 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-
-    <p>Antal kurser: {{ dataSource.filteredData.length }}</p>
-    <p>Totalt antal poäng: {{ getTotalPoints() }} hp</p>
 </div>
+
+<p>Antal kurser: {{ dataSource.filteredData.length }}</p>
+<p>Totalt antal poäng: {{ getTotalPoints() }} hp</p>

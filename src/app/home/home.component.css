@@ -54,7 +54,7 @@ mat-icon {
     margin: 0 auto;
 }
 
-@media screen and (max-width : 700px) {
+@media screen and (max-width : 800px) {
     .introContainer {
         position: static;
         background-color: #430A5D;
@@ -72,8 +72,12 @@ mat-icon {
     .infoBox {
         min-width: auto;
         max-width: 100%;
-        
         flex: none;
         box-sizing: border-box;
+    }
+
+    .infoContainer {
+        gap: 10px;
+        margin-top: 10px;
     }
 }

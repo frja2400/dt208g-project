@@ -8,7 +8,8 @@ mat-form-field {
     flex: 1;
 }
 
-h2, table {
+h2,
+table {
     border-bottom: 1px solid lightgrey;
     padding-bottom: 5px;
 }
@@ -18,6 +19,35 @@ h2, table {
 }
 
 button {
-  min-width: 100px;
+    min-width: 100px;
 }
 
+@media screen and (max-width : 800px) {
+    h2 {
+        text-align: center;
+    }
+
+    .filterContainer {
+        display: block;
+    }
+
+    mat-form-field {
+        width: 100%;
+        flex: none;
+    }
+
+    .btnContainer {
+        text-align: center;
+    }
+
+    p {
+        text-align: center;
+    }
+
+    .courseContainer {
+        border-top: 2px solid #8C6A5D;
+        border-bottom: 2px solid #8C6A5D;
+        margin-bottom: 20px;
+    }
+    
+}

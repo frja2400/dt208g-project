@@ -1,59 +1,47 @@
-# Dt208gProject
+# Projekt – Uppsala Tekniska Universitet
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.9.
+Detta är en webbapplikation utvecklad med Angular och TypeScript där användaren kan söka, filtrera och lägga till kurser i ett personligt ramschema. Applikationen är resultatet av mitt slutprojekt för kursen Programmering i TypeScript.
 
-## Development server
+## Grundläggande funktionalitet
 
-To start a local development server, run:
+Projektet uppfyller samtliga grundkrav:
 
-```bash
-ng serve
-```
+- **Lista kurser** från en lokal JSON-fil i tabellformat.
+- **Filtrering och sökning** baserat på kurskod eller kursnamn.
+- **Filtrera på ämnen** genom att välja från en dropdown-meny.
+- **Lägg till kurser** i ett personligt ramschema.
+- **Sortera på kolumnerna** kurskod, kursnamn, poäng och ämne.
+- **Radera enskilda kurser** från ramschemat.
+- **Spara valda kurser** i `localStorage` för att bevara data mellan sidladdningar.
+- **Antal kurser och sammanlagda poäng** skrivs ut på skärmen.
+- **Responsiv design** där tabeller kan scrollas horisontellt på mindre skärmar och navigeringsmenyn anpassas till mobilvy.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Funktioner för överbetyg
 
-## Code scaffolding
+Utöver grundkraven har följande funktionalitet implementerats för att förbättra användarupplevelsen och ge applikationen ett mer professionellt och responsivt gränssnitt:
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- **Angular Material**: Implementerat för modern design och responsiva komponenter som tabeller, formulärfält, knappar och select-menyer.
+- **MatTableDataSource**: Används för inbyggd sortering, filtrering och paginering av kurslistan.
+- **Paginering**: Användaren kan enkelt bläddra mellan kurser om det finns många.
+- **Filter-knapp**: En knapp för att rensa både söktext och ämnesval.
+- **Radera alla-funktion**: Möjlighet att ta bort samtliga kurser från ramschemat med bekräftelseruta.
+- **Dynamiska knappar**: Lägg till-knappen uppdateras automatiskt beroende på om kursen redan är tillagd.
+- **Startsida**: En startsida som förklarar syftet med webbplatsen och välkomnar användaren med en headerbild, introduktion och informationsrutor.
 
-```bash
-ng generate component component-name
-```
+## Teknologier
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+- Angular
+- Angular Material
+- TypeScript
+- HTML/CSS
+- LocalStorage
+- Git & GitHub
 
-```bash
-ng generate --help
-```
+## Projektstruktur
 
-## Building
+Applikationen består av tre huvudsidor:
+- **Startsida**
+- **Kurslista**
+- **Ramschema**
 
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Varje sida är uppdelad i komponenter, med routing och gemensam navigering.

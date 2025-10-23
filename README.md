@@ -44,4 +44,7 @@ Applikationen består av tre huvudsidor:
 - **Kurslista**
 - **Ramschema**
 
+## Live Demo
+[Prova applikationen här](https://dt208g-project-frja2400.netlify.app/home)
+
 Varje sida är uppdelad i komponenter, med routing och gemensam navigering.
